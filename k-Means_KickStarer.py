@@ -21,26 +21,26 @@ df = df.drop(['ID', 'name', 'currency', 'goal', 'pledged'], axis=1)
 df = df[df.state != 'undefined']
 
 #Succcessul projects
-#suc = df[df.org_state == 'successful']
+suc = df[df.org_state == 'successful']
 
 #Replace nan values
 df['usd pledged'] = df['usd pledged'].fillna((df['usd pledged'].mean()))
 
 #Describe
-#pd.set_option('float_format', '{:.2f}'.format)
-#sub_plot = plt.subplot(111, frame_on=False)
+pd.set_option('float_format', '{:.2f}'.format)
+sub_plot = plt.subplot(111, frame_on=False)
 
-#sub_plot.xaxis.set_visible(False) 
-#sub_plot.yaxis.set_visible(False) 
+sub_plot.xaxis.set_visible(False) 
+sub_plot.yaxis.set_visible(False) 
 
-#table(sub_plot, df.describe(), loc='upper right').scale(1, 2)
-#plt.title("Kickstarter Projects Describe")
-#plt.savefig('kick_inf.png', dpi=199)
+table(sub_plot, df.describe(), loc='upper right').scale(1, 2)
+plt.title("Kickstarter Projects Describe")
+plt.savefig('kick_inf.png', dpi=199)
 
 #Number of succesfull projects
-#df['state'].value_counts(normalize = True).plot.bar(rot=0)
-#plt.title("State")
-#plt.savefig('State', dpi=199)
+df['state'].value_counts(normalize = True).plot.bar(rot=0)
+plt.title("State")
+plt.savefig('State', dpi=199)
 
 #Categories successful
 cleanup_nums = {"state":{"failed": 0, "canceled": 0, "suspended" :0, "successful" : 1, "live" : 1}}
@@ -51,24 +51,24 @@ df.replace(cleanup_nums, inplace=True)
 
 suc = df[df.org_state == 'successful']
 
-#a4_dims = (11.7, 8.27)
-#fig, ax = plt.subplots(figsize=a4_dims)
-#ax = sns.barplot(x=suc.main_category.value_counts().index, y=suc.main_category.value_counts())
-#ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
-#plt.title("Categories")
-#plt.savefig('SCategories', dpi=199)
+a4_dims = (11.7, 8.27)
+fig, ax = plt.subplots(figsize=a4_dims)
+ax = sns.barplot(x=suc.main_category.value_counts().index, y=suc.main_category.value_counts())
+ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
+plt.title("Categories")
+plt.savefig('SCategories', dpi=199)
 
 #Backers
-#a4_dims = (11.7, 8.27)
-#fig, ax = plt.subplots(figsize=a4_dims)
-#ax = sns.barplot(x="main_category", y="backers", hue="state", data=df)
-#ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
-#plt.title("Backers")
-#plt.savefig('backers', dpi=199)
+a4_dims = (11.7, 8.27)
+fig, ax = plt.subplots(figsize=a4_dims)
+ax = sns.barplot(x="main_category", y="backers", hue="state", data=df)
+ax.set_xticklabels(ax.get_xticklabels(), rotation=45)
+plt.title("Backers")
+plt.savefig('backers', dpi=199)
 
 
 #Remove undefined
-#df = df[df.state != 'undefined']
+df = df[df.state != 'undefined']
 
 #Converting non-numeric data to numeric
 df["deadline"] = pd.to_datetime(df["deadline"]).dt.strftime("%Y%m%d")
@@ -80,13 +80,13 @@ df['days'] = np.busday_count(pd.to_datetime(df['launched']).values.astype('datet
                              pd.to_datetime(df['deadline']).values.astype('datetime64[D]'))
 
 #Correlation
-#plt.figure(figsize=(15, 3))
-#ax = plt.subplot(111, frame_on=False) 
-#ax.xaxis.set_visible(False)  
-#ax.yaxis.set_visible(False)  
-#table(ax, df.corr(), loc='upper right').scale(1, 2)
-#plt.title("Kickstarter Projects Correlations")
-#plt.savefig('corr.png', dpi=199)
+plt.figure(figsize=(15, 3))
+ax = plt.subplot(111, frame_on=False) 
+ax.xaxis.set_visible(False)  
+ax.yaxis.set_visible(False)  
+table(ax, df.corr(), loc='upper right').scale(1, 2)
+plt.title("Kickstarter Projects Correlations")
+plt.savefig('corr.png', dpi=199)
  
 
 
