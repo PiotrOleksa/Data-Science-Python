@@ -111,12 +111,6 @@ plt.savefig('EUR-GRB to USD-PLN.png', dpi=199)
 #Correlation
 common_close_price_out.corr()
 
-
-plt.scatter(common_close_price_out['EUR_GBP_CLOSE'][-50:], common_close_price_out['USD_PLN_CLOSE'][-50:])
-plt.title("EUR-GRB to USD-PLN last 50 days")
-plt.savefig('EUR-GRB to USD-PLN last 50 days.png', dpi=199)
-
-
 #Creating a model
 eur_gbp_array = eur_gbp['Close'].to_numpy().reshape(-1, 1)
 usd_pln_array = usd_pln['Close'].to_numpy().reshape(-1, 1)
