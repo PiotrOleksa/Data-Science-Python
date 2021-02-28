@@ -138,7 +138,7 @@ plt.scatter(X_test, y_test,  color='black')
 plt.plot(X_test, prediction, color='blue', linewidth=3)
 plt.title("Linear Regression EUR-GBP to USD-PLN")
 plt.grid()
-plt.savefig('EUR-GRB to USD-PLN last 50 days.png', dpi=199)
+plt.savefig('EUR-GRB to USD-PLN Linear Regression.png', dpi=199)
 
 model.predict([[0.88]])
 
